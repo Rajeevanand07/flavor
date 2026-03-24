@@ -46,31 +46,10 @@ async function LoginUser(req, res) {
   }
 }
 
-async function authUser(req, res){
-  const token = req.cookies.token
-  if (!token) {
-    return res.status(401).json({
-      message : "user not authorized"
-    })
-  }
-  const decoded = jwt.verify(token, process.env.JWT_SECRET)
-  const user = await userModel.findOne({_id : decoded.id})
-
-  if (!user) {
-    return res.json({
-      message : "user not found"
-    })
-  }
-  res.status(200).json({
-    message : "auth. done..!",
-    user : user
-  })
-} 
 
 
 
 module.exports = {
   registerUser,
-  LoginUser,
-  authUser
+  LoginUser
 }

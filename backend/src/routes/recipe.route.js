@@ -1,8 +1,9 @@
 const express = require('express')
 const recipeController = require('../controllers/recipe.controller')
+const authUser = require("../middleware/auth.middleware")
 const router = express.Router()
 
-router.post('/', recipeController.createRecipe)
+router.post('/', authUser, recipeController.createRecipe)
 router.get('/', recipeController.getAllRecipes)
 router.get('/:id', recipeController.getRecipe)
 router.delete('/:id', recipeController.deleteRecipe)
