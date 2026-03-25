@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router'
+import { NavLink, Link} from 'react-router'
 
 const Nav = () => {
   return (
@@ -40,8 +40,8 @@ const Nav = () => {
             <NavLink className={(e)=>{return e.isActive?"text-[#EC1B00] ":"text-black"}} to="/create">Create</NavLink>
           </div>
           <div className='flex gap-5 '>
-            <button className='px-5 py-2 border text-[#EC1B00] border-[#EC1B00] rounded-[10px] hover:bg-[#EC1B00] hover:text-white transition-all ease-in-out duration-300 cursor-pointer'>Login</button>
-            <button className='px-5 py-2 border text-[#EC1B00] border-[#EC1B00] rounded-[10px] hover:bg-[#EC1B00] hover:text-white transition-all ease-in-out duration-300 cursor-pointer'>Sign Up</button>
+            <Link to='/login'><button className='px-5 py-2 border text-[#EC1B00] border-[#EC1B00] rounded-[10px] hover:bg-[#EC1B00] hover:text-white transition-all ease-in-out duration-300 cursor-pointer'> Login </button> </Link>
+            <Link to='/signup'><button className='px-5 py-2 border text-[#EC1B00] border-[#EC1B00] rounded-[10px] hover:bg-[#EC1B00] hover:text-white transition-all ease-in-out duration-300 cursor-pointer'> Signup </button> </Link>
           </div>
         </nav>
     </>

@@ -11,12 +11,12 @@ async function registerUser(req, res) {
       name, email, password : hashedPass
     })
     res.status(201).json({
-      message : "user created",
+      message : "user register",
       user : user
     })
   } catch (error) {
     res.json({
-      message : "error while creating user",
+      message : "error while register",
       error : error
     })
   }
@@ -35,12 +35,13 @@ async function LoginUser(req, res) {
     res.cookie("token" , token)
 
     res.status(200).json({
+      message : "login success",
       user : user,
     })
 
   } catch (error) {
     res.json({
-      message : "error while creating user",
+      message : "error while login",
       error : error
     })
   }

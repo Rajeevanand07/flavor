@@ -28,7 +28,8 @@ async function createRecipe(req, res) {
 
 async function getAllRecipes(req, res) {
   try {
-    const allRecipes = await recipeModel.find();
+    const user = req.user;
+    const allRecipes = await recipeModel.find({userId : user._id});
     res.status(200).json({
       message: "all recipes",
       recipes: allRecipes,
