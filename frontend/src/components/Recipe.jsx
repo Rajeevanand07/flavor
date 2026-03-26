@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { RecipeContext } from "../context/RecipeContext";
 import { useForm } from "react-hook-form";
@@ -7,8 +7,14 @@ import axios from "axios";
 const Recipe = () => {
   const { id } = useParams();
   const { recipe, setRecipe } = useContext(RecipeContext);
-  const filteredRecipe = recipe.find((item) => item._id === id);
+  const [filteredRecipe, setFilteredRecipe] = useState(null)
+  // const filteredRecipe = recipe.find((item) => item._id === id);\
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    singleRecipe()
+  }, [])
+
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
@@ -20,11 +26,25 @@ const Recipe = () => {
     },
   });
 
+  const singleRecipe = async () => {
+    try {
+      const res = await axios.get(`http://localhost:3000/api/recipe/${id}`, {
+        withCredentials : true
+      })
+      console.log(res.data.recipe)
+      setFilteredRecipe(res.data.recipe)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const updateRecipe = async (data) => {
     try {
       console.log(data)
       data._id = id;
-      await axios.patch(`http://localhost:3000/api/recipe/${id}`, data);
+      await axios.patch(`http://localhost:3000/api/recipe/${id}`, data, {
+        withCredentials : true
+      });
       setRecipe(recipe.map((item) => (item._id === id ? data : item)));
       navigate("/");
     } catch (error) {
@@ -34,7 +54,9 @@ const Recipe = () => {
 
   const deleteRecipe = async () => {
     try {
-      await axios.delete(`http://localhost:3000/api/recipe/${id}`);
+      await axios.delete(`http://localhost:3000/api/recipe/${id}`, {
+        withCredentials : true
+      });
       setRecipe(recipe.filter((item) => item._id !== id));
       navigate("/");
     } catch (error) {

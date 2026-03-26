@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form"
 import { RecipeContext } from "../context/RecipeContext";
 import { useNavigate } from "react-router-dom";
-import { nanoid } from 'nanoid'
 import axios from "axios";
 
 const Create = () => {
@@ -12,7 +11,9 @@ const Create = () => {
 
     const getData= async(data)=>{
       try {
-        const res = await axios.post('http://localhost:3000/api/recipe', data)
+        const res = await axios.post('http://localhost:3000/api/recipe', data, {
+          withCredentials : true
+        })
         console.log(res.data.recipe);
         const newRecipe = [...recipe, res.data.recipe]
         setRecipe(newRecipe)

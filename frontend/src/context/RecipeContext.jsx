@@ -8,7 +8,9 @@ const RecipeContextProvider = ({children}) => {
   const [recipe,setRecipe]=useState([])
 
   async function getRecipe() {
-    const res = await axios.get('http://localhost:3000/api/recipe')
+    const res = await axios.get('http://localhost:3000/api/recipe',{
+      withCredentials : true
+    })
     // console.log(res.data.recipes)
     setRecipe(res.data.recipes)
   }
