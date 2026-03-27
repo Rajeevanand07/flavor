@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const { register, handleSubmit, reset } = useForm();
+  const navigate = useNavigate();
 
   const handleSignupData = async (data) => {
     console.log("Signup Data:", data);
@@ -13,6 +15,7 @@ const Signup = () => {
       })
       console.log(res.data)
       toast.success(res.data.message)
+      navigate("/login")
     } catch (error) {
       console.log(error)
       toast.error("error while register")

@@ -1,18 +1,21 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { register, handleSubmit, reset } = useForm();
+  const navigate = useNavigate();
 
   const handleLoginData = async (data) => {
-    console.log("Login Data:", data);
+    // console.log("Login Data:", data);
     try {
       const res = await axios.post("http://localhost:3000/api/user/login", data , {
         withCredentials : true
       })
       console.log(res.data)
       toast.success(res.data.message)
+      navigate("/")
     } catch (error) {
       console.log(error)
       toast.error("login failed")

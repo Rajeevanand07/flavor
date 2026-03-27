@@ -5,6 +5,7 @@ import Create from "../components/Create"
 import Recipe from "../components/Recipe"
 import Login from "../components/Login"
 import Signup from "../components/Signup"
+import NotFound from "../components/NotFound"
 
 const MainRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const MainRoutes = () => {
         <Route path="/create" element={<Create/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Signup/>} />
+        <Route path="*" element={<NotFound/>} />
       </Routes>
   )
 }

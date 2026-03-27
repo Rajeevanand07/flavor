@@ -16,13 +16,13 @@ const Recipe = () => {
   }, [])
 
 
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     defaultValues: {
-      recipeName: filteredRecipe?.recipeName,
-      chefName: filteredRecipe?.chefName,
-      ingredients: filteredRecipe?.ingredients,
-      Instructions: filteredRecipe?.Instructions,
-      ImageURL: filteredRecipe?.ImageURL,
+      recipeName: "",
+      chefName: "",
+      ingredients: "",
+      Instructions: "",
+      ImageURL: "",
     },
   });
 
@@ -33,6 +33,13 @@ const Recipe = () => {
       })
       console.log(res.data.recipe)
       setFilteredRecipe(res.data.recipe)
+      reset({
+        recipeName: res.data.recipe.recipeName || "",
+        chefName: res.data.recipe.chefName || "",
+        ingredients: res.data.recipe.ingredients || "",
+        Instructions: res.data.recipe.Instructions || "",
+        ImageURL: res.data.recipe.ImageURL || "",
+      })
     } catch (error) {
       console.log(error)
     }
