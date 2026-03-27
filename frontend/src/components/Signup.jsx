@@ -10,7 +10,7 @@ const Signup = () => {
   const handleSignupData = async (data) => {
     console.log("Signup Data:", data);
     try {
-      const res = await axios.post("http://localhost:3000/api/user/register" , data, {
+      const res = await axios.post("https://flavor-fm8j.onrender.com/api/user/register" , data, {
         withCredentials : true
       })
       console.log(res.data)

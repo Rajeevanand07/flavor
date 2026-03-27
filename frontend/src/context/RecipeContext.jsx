@@ -6,9 +6,9 @@ export const RecipeContext = createContext(null); //it will hold universal data
 
 const RecipeContextProvider = ({children}) => {
   const [recipe,setRecipe]=useState([])
-
+  
   async function getRecipe() {
-    const res = await axios.get('http://localhost:3000/api/recipe',{
+    const res = await axios.get('https://flavor-fm8j.onrender.com/api/recipe',{
       withCredentials : true
     })
     // console.log(res.data.recipes)

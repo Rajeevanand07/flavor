@@ -28,7 +28,7 @@ const Recipe = () => {
 
   const singleRecipe = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/api/recipe/${id}`, {
+      const res = await axios.get(`https://flavor-fm8j.onrender.com/api/recipe/${id}`, {
         withCredentials : true
       })
       console.log(res.data.recipe)
@@ -49,7 +49,7 @@ const Recipe = () => {
     try {
       console.log(data)
       data._id = id;
-      await axios.patch(`http://localhost:3000/api/recipe/${id}`, data, {
+      await axios.patch(`https://flavor-fm8j.onrender.com/api/recipe/${id}`, data, {
         withCredentials : true
       });
       setRecipe(recipe.map((item) => (item._id === id ? data : item)));
@@ -61,7 +61,7 @@ const Recipe = () => {
 
   const deleteRecipe = async () => {
     try {
-      await axios.delete(`http://localhost:3000/api/recipe/${id}`, {
+      await axios.delete(`https://flavor-fm8j.onrender.com/api/recipe/${id}`, {
         withCredentials : true
       });
       setRecipe(recipe.filter((item) => item._id !== id));

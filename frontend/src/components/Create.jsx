@@ -11,7 +11,7 @@ const Create = () => {
 
     const getData= async(data)=>{
       try {
-        const res = await axios.post('http://localhost:3000/api/recipe', data, {
+        const res = await axios.post('https://flavor-fm8j.onrender.com/api/recipe', data, {
           withCredentials : true
         })
         console.log(res.data.recipe);
