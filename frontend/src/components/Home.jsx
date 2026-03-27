@@ -21,7 +21,7 @@ const Home = () => {
         </h1>
 
         <div className="flex flex-wrap gap-6">
-          {recipe.length > 0 ? (
+          {recipe && recipe.length > 0 ? (
             recipe.map((item) => (
               <div
                 key={item._id}
