@@ -32,7 +32,12 @@ async function LoginUser(req, res) {
     }
 
     const token = jwt.sign({id : user._id}, process.env.JWT_SECRET)
-    res.cookie("token" , token)
+    res.cookie("token" , token,{
+      httpOnly : true,  // prevent XSS attacks
+      secure : true,    // only send over HTTPS not on http
+      sameSite : "none", // allow cross-site requests
+      maxAge : 24 * 60 * 60 * 1000 // 24 hours
+    })
 
     res.status(200).json({
       message : "login success",
